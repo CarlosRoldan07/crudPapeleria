@@ -1,0 +1,30 @@
+--Probar el script en MySQL Workbench--
+
+-- Crear base de datos
+CREATE DATABASE IF NOT EXISTS papeleria_db;
+USE papeleria_db;
+
+-- Tabla de usuarios
+CREATE TABLE IF NOT EXISTS usuario (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Tabla de productos
+CREATE TABLE IF NOT EXISTS producto (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DOUBLE,
+    stock INT
+);
+
+-- Tabla de ventas
+CREATE TABLE IF NOT EXISTS venta (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cantidad INT,
+    fecha DATETIME,
+    producto_id BIGINT,
+    FOREIGN KEY (producto_id) REFERENCES producto(id)
+);
