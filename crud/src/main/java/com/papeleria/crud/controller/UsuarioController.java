@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * Controlador REST para la gestión de usuarios.
+ * Permite registrar nuevos usuarios y autenticar credenciales mediante JWT.
+ */
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -22,12 +26,27 @@ public class UsuarioController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    /**
+     * Registra un nuevo usuario en el sistema.
+     * La contraseña se cifra antes de ser almacenada.
+     *
+     * @param usuario objeto {@link Usuario} recibido en el cuerpo de la solicitud
+     * @return el usuario creado con su ID asignado
+     */
     @PostMapping
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
         Usuario nuevo = usuarioService.registrar(usuario);
         return ResponseEntity.status(201).body(nuevo);
     }
 
+    /**
+     * Autentica un usuario y genera un token JWT si las credenciales son válidas.
+     * Valida que el nombre de usuario y la contraseña no estén vacíos.
+     *
+     * @param request objeto {@link LoginRequest} con username y password
+     * @return token JWT en caso de autenticación exitosa
+     * @throws AutenticacionException si las credenciales son inválidas
+     */
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
@@ -49,6 +68,4 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error inesperado en el login");
         }
     }
-
 }
-
