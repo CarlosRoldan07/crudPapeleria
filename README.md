@@ -26,3 +26,35 @@ Aplicación para gestionar ventas e inventario de una papelería. Desarrollada c
 ## 📮 Endpoints
 Ver colección de Postman en el archivo 'crudPapeleria.postman_collection'
 
+## 🔐 Autenticación
+La app utiliza JWT para proteger los endpoints. Solo los siguientes están abiertos:
+
+POST /usuarios → Registro de usuario
+
+POST /usuarios/login → Login y generación de token
+
+Todos los demás requieren el header:
+Authorization: Bearer <token>
+
+## Pruebas con Postman
+Importa la colección postman/papeleria_collection.json
+
+Ejecuta:
+
+Registro de usuario
+
+Login (guarda token como variable)
+
+Acceso a productos y ventas con token
+
+## Estructura del proyecto
+
+crud/
+├── src/                  # Código fuente
+├── pom.xml               # Configuración Maven
+├── README.md             # Documentación
+├── scripts/              # SQL de inicialización
+├── postman/              # Colección de pruebas
+
+
+
