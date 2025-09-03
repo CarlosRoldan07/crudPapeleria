@@ -24,4 +24,5 @@ Aplicación para gestionar ventas e inventario de una papelería. Desarrollada c
 4. Ejecutar el proyecto desde IntelliJ
 
 ## 📮 Endpoints
-Ver colección de Postman en la carpeta `/postman`
+Ver colección de Postman en el archivo 'crudPapeleria.postman_collection'
+
